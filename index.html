@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Password Generator</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Generate a <span>random password!</span></h1>
+    <h3>Made by K4minski.</h3>
+  </div>
+  <div class="display">
+    <input type="text" id="password" placeholder="Password">
+    <img src="images/copy.png" onclick="copyPassword()">
+  </div>
+  <button onclick="createPassword()"><img src="images/generate.png"> Generate the password</button>
+
+  <script>
+    const passwordBox = document.getElementById("password");
+    const length = 16;
+    const upperCase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    const lowerCase = "abcdefghijklmnopqrstuvwxyz";
+    const number = "0123456789";
+    const symbol = "@#$%¨&*()_+~|}{[]></-=";
+    const allChars = upperCase + lowerCase + number + symbol;
+
+    function createPassword(){
+      let password = "";
+      password += upperCase[Math.floor(Math.random() * upperCase.length)];
+      password += lowerCase[Math.floor(Math.random() * lowerCase.length)];
+      password += number[Math.floor(Math.random() * number.length)];
+      password += symbol[Math.floor(Math.random() * symbol.length)];
+
+      while(length > password.length){
+        password += allChars[Math.floor(Math.random() * allChars.length)]
+      }
+      passwordBox.value = password;
+    }
+
+    function copyPassword(){
+      passwordBox.select();
+      document.execCommand("copy");
+    }
+  </script>
+
+  <footer>
+    <div class="footer-content">
+      <h3>Support me:</h3>
+      <h3 style="display: inline-flex; align-items: center;">
+        bc1qfgteupaks7qhlzzlm8aptrz8j4ksajmezq0wwr <img src="/images/bitcoin.png" alt="Bitcoin icon" style="width: 20px; height: 20px; margin-left: 5px;">
+      </h3>
+    </div>
+  </footer>
+
+</body>
+</html>
